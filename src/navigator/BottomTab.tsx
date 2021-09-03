@@ -11,23 +11,20 @@ const Tab = createBottomTabNavigator();
 function BottomTabNavigator() {
   return (
     <Tab.Navigator
-      sceneContainerStyle={{
-        backgroundColor: 'rgba(64, 64, 52, 1)'
-      }}
       screenOptions={{
         tabBarStyle: {
-          backgroundColor: 'rgba(255,255,255,0.5)',
+          position:'absolute',
+          backgroundColor: 'rgba(255,255,255, 0.6)',
           elevation: 0,
-          borderTopWidth: 0,
-          zIndex:999
+          borderWidth: 0,
         },
         headerShown: false,
         tabBarLabelStyle: {
           fontSize: 13,
           fontWeight: 'bold',
         },
-        tabBarInactiveTintColor:colors.secondary,
-        tabBarActiveTintColor: colors.ligth,
+        tabBarInactiveTintColor:'#21201d',
+        tabBarActiveTintColor: '#dd3e11',
         tabBarHideOnKeyboard:true
       }}
     >
@@ -35,21 +32,21 @@ function BottomTabNavigator() {
         name="Lista"
         component={ListScreen}
         options={{
-          tabBarIcon: () => <Icon name="list-outline" size={30} color={colors.secondary}/> // Falta el color
+          tabBarIcon: ({color}) => <Icon name="list-outline" size={30} color={color}/>
         }}
       />
       <Tab.Screen
         name="Buscar"
         component={SearchScreen}
         options={{
-          tabBarIcon: () => <Icon name="search-circle-outline" size={30} color={colors.secondary}/> // Falta el color
+          tabBarIcon: ({color}) => <Icon name="search-circle-outline" size={30} color={color}/>
         }}
       />
       <Tab.Screen
         name="Mi equipo"
         component={MyTeam}
         options={{
-          tabBarIcon: () => <Icon name="skull-outline" size={30} color={colors.secondary}/> // Falta el color
+          tabBarIcon: ({color}) => <Icon name="skull-outline" size={30} color={color}/>
         }}
       />
     </Tab.Navigator>

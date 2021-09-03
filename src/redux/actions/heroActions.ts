@@ -14,3 +14,10 @@ export function setHeroDetailsId(hero: Hero){
         payload: hero
     }
 }
+
+export function addTeamMember(hero: Hero){
+    return {
+        type: ActionTypes.ADD_TEAM_MEMBER,
+        payload: hero
+    }
+}
