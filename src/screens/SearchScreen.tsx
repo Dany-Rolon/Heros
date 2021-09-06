@@ -37,7 +37,7 @@ const SearchScreen = () => {
                             numColumns={2}
                         />
                     ) : (
-                        <Text style={styles.fallback}>Heros founded will show here</Text>
+                        <Text style={styles.fallback}>Heros will show here</Text>
                     )
                 }
             </View>
