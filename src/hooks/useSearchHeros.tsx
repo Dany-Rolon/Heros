@@ -11,8 +11,7 @@ interface Props {
 export default function useSearchHeros({input, time}: Props){
     const heros = useSelector((state: RootState) => state.heros.heros);
 
-    const [data, setData] = useState<Hero[]>([]);
-    const [founded, setFounded] = useState<boolean>(false)
+    const [data, setData] = useState<Hero[]>(heros);
 
     function getSearchingHeros(){
         const result = heros.filter((hero) => hero.name.toLowerCase().includes(input.toLowerCase()));
@@ -23,10 +22,8 @@ export default function useSearchHeros({input, time}: Props){
         const timeout = setTimeout(() => {
             if(input !== ''){
                 getSearchingHeros();
-                setFounded(true);
             }  else {
-                setFounded(false);
-                setData([]);
+                setData(heros);
             }
         }, time);
 
@@ -35,6 +32,6 @@ export default function useSearchHeros({input, time}: Props){
         }
     }, [input])
     
-    return {data, founded}
+    return {data}
     
 }

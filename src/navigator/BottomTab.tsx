@@ -36,13 +36,6 @@ function BottomTabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Buscar"
-        component={SearchScreen}
-        options={{
-          tabBarIcon: ({color}) => <Icon name="search-circle-outline" size={30} color={color}/>
-        }}
-      />
-      <Tab.Screen
         name="Mi equipo"
         component={MyTeam}
         options={{

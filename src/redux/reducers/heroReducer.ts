@@ -3,7 +3,6 @@ import { ActionTypes } from "../contants";
 
 interface defaultStateInterface {
     heros: Hero[],
-    hero: Hero | {},
     myTeam: Hero[]
 }
 
@@ -14,7 +13,6 @@ interface action {
 
 const defaultState: defaultStateInterface = {
     heros: [],
-    hero: {},
     myTeam: []
 }
 
@@ -27,11 +25,6 @@ export function herosReducer(
             return {
                 ...state,
                 heros: payload
-            }
-        case ActionTypes.SET_HERO_DETAILS_ID:
-            return {
-                ...state,
-                hero: payload
             }
         case ActionTypes.ADD_TEAM_MEMBER:
             let newArray = state.myTeam

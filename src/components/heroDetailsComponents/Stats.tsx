@@ -1,51 +1,57 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ViewStyle } from 'react-native';
 import { Powerstats } from '../../interfaces/heroInterface'
-import InfoDisplay from '../InfoDisplay'
-
+import ProgressBar from 'react-native-progress/Bar';
 interface Props {
-    heroStats: Powerstats
+    heroStats: Powerstats,
+    style: ViewStyle
 }
 
-const Stats = ({ heroStats }: Props) => {
+const Stats = ({ heroStats, style }: Props) => {
 
-    function calculateAverage(): string {
+    function calculateAverage(): number {
         const total = heroStats.combat + heroStats.durability + heroStats.intelligence + heroStats.power + heroStats.speed + heroStats.strength;
         const average = total / 6;
-        return average.toFixed();
+        return average;
     }
 
     return (
-        <View style={{ alignItems: 'center', justifyContent: 'space-between', marginTop:20 }}>
-            {/* Stast */}
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', width: '100%' }}>
-                <View>
-                    <InfoDisplay title='Combat' info={heroStats.combat} row />
-                    <InfoDisplay title='Durability' info={heroStats.durability} row />
-                    <InfoDisplay title='Intelligence' info={heroStats.intelligence} row />
-                </View>
-                <View>
-                    <InfoDisplay title='Power' info={heroStats.power} row />
-                    <InfoDisplay title='Speed' info={heroStats.speed} row />
-                    <InfoDisplay title='Strength' info={heroStats.strength} row />
-                </View>
-            </View>
+        <View style={style}>
+            <Text style={styles.title}>Stats</Text>
 
-            {/* Average */}
-            <View style={styles.averageContainer}>
-                <InfoDisplay title='Average' info={calculateAverage()} row />
-            </View>
+            <Text style={styles.subTitle}>Combat</Text>
+            <ProgressBar progress={heroStats.combat / 100} width={null} />
+
+            <Text style={styles.subTitle}>Durability</Text>
+            <ProgressBar progress={heroStats.durability / 100} width={null} />
+
+            <Text style={styles.subTitle}>Intelligence</Text>
+            <ProgressBar progress={heroStats.intelligence / 100} width={null} />
+
+            <Text style={styles.subTitle}>Power</Text>
+            <ProgressBar progress={heroStats.power / 100} width={null} />
+
+            <Text style={styles.subTitle}>Speed</Text>
+            <ProgressBar progress={heroStats.speed / 100} width={null} />
+
+            <Text style={styles.subTitle}>Strength</Text>
+            <ProgressBar progress={heroStats.strength / 100} width={null} />
+
+            <Text style={styles.subTitle}>Average</Text>
+            <ProgressBar progress={calculateAverage() / 100} width={null} />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    averageContainer: {
-        marginTop: 25,
-        padding: 8,
-        borderWidth: 2,
-        borderRadius: 10,
-        borderColor: 'white'
+    title:{
+        fontSize:18,
+        fontWeight:'600',
+        textAlign:'center'
+    },
+    subTitle: {
+        fontSize: 14,
+        fontWeight:'400'
     }
 })
 

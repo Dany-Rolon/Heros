@@ -23,11 +23,18 @@ export default function useStats(){
 
         return powerstats
     }
+    
+    function getAverage(powerstats: Powerstats){
+        return (powerstats.combat + powerstats.durability + powerstats.intelligence + powerstats.power + powerstats.speed + powerstats.strength)/6
+    }
 
     useEffect(() => {
         setTeamPowerstats(getTeamStats());
     }, [myTeam])
 
-    return teamPowerstats
+    return{
+        teamPowerstats,
+        getAverage
+    } 
 
 }

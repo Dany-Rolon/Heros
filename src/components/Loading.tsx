@@ -1,13 +1,12 @@
 import React from 'react'
 import { View, StyleSheet, ActivityIndicator } from 'react-native'
-import { colors } from '../theme/colors';
 
 const Loading = () => {
     return (
         <View style={styles.container}>
             <ActivityIndicator 
                 size={40}
-                color={colors.ligth}
+                color='black'
             />
         </View>
     )

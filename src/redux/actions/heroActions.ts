@@ -8,13 +8,6 @@ export function setHeros(heros: Hero[]){
     }
 }
 
-export function setHeroDetailsId(hero: Hero){
-    return {
-        type: ActionTypes.SET_HERO_DETAILS_ID,
-        payload: hero
-    }
-}
-
 export function addTeamMember(hero: Hero){
     return {
         type: ActionTypes.ADD_TEAM_MEMBER,

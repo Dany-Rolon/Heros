@@ -13,7 +13,6 @@ export default store
 export interface RootState {
     heros:{
         heros: Hero[],
-        hero: Hero,
         myTeam: Hero[]
     }
 }

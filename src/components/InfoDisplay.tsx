@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     subtitle: {
         fontSize: 20,
         fontWeight: '400',
-        color:'white'
+        color:'black'
     }
 })
 
