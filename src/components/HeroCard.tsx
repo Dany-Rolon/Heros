@@ -3,7 +3,6 @@ import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { Hero } from '../interfaces/heroInterface'
 import ProgressBar from 'react-native-progress/Bar';
-import { colors } from '../theme/colors'
 import useStats from '../hooks/useStats';
 
 interface Props {

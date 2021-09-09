@@ -3,7 +3,13 @@ import { ActionTypes } from "../contants";
 
 interface defaultStateInterface {
     heros: Hero[],
-    myTeam: Hero[]
+    hero1: Hero | null,
+    hero2: Hero | null,
+    hero3: Hero | null,
+    villain1: Hero | null,
+    villain2: Hero | null,
+    villain3: Hero | null,
+    selecting: string
 }
 
 interface action {
@@ -13,13 +19,19 @@ interface action {
 
 const defaultState: defaultStateInterface = {
     heros: [],
-    myTeam: []
+    hero1: null,
+    hero2: null,
+    hero3: null,
+    villain1: null,
+    villain2: null,
+    villain3: null,
+    selecting: 'hero1'
 }
 
 export function herosReducer(
-    state:defaultStateInterface = defaultState, 
-    {type, payload}: action
-){
+    state: defaultStateInterface = defaultState,
+    { type, payload }: action
+) {
     switch (type) {
         case ActionTypes.SET_HEROS:
             return {
@@ -27,11 +39,14 @@ export function herosReducer(
                 heros: payload
             }
         case ActionTypes.ADD_TEAM_MEMBER:
-            let newArray = state.myTeam
-            newArray.push(payload);
-            return{
+            return {
                 ...state,
-                myTeam: newArray
+                [state.selecting]: payload 
+            }
+        case ActionTypes.SET_SELECTING_HERO:
+            return {
+                ...state,
+                selecting: payload
             }
         default:
             return state
