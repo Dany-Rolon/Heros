@@ -1,10 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ListScreen from '../screens/ListScreen';
-import SearchScreen from '../screens/SearchScreen';
 import MyTeam from '../screens/MyTeam';
 import Icon from 'react-native-vector-icons/Ionicons'
-import { colors } from '../theme/colors';
 import UserInfoScren from '../screens/UserInfoScren';
 
 const Tab = createBottomTabNavigator();
@@ -14,19 +12,19 @@ function BottomTabNavigator() {
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
-          position: 'absolute',
-          backgroundColor: 'rgba(255,255,255, 0.6)',
-          elevation: 0,
-          borderWidth: 0,
+          backgroundColor: '#171717',
         },
         headerShown: false,
         tabBarLabelStyle: {
           fontSize: 13,
           fontWeight: 'bold',
         },
-        tabBarInactiveTintColor: '#21201d',
-        tabBarActiveTintColor: '#dd3e11',
+        tabBarInactiveTintColor: 'white',
+        tabBarActiveTintColor: '#A3E635',
         tabBarHideOnKeyboard: true
+      }}
+      sceneContainerStyle={{
+        backgroundColor:'#171717'
       }}
     >
       <Tab.Screen

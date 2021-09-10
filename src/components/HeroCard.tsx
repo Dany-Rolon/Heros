@@ -37,9 +37,9 @@ const HeroCard = ({ hero }: Props) => {
 
                     {/* Power */}
                     <View style={{ flexDirection: 'row', alignItems:'center' }}>
-                        <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Power:</Text>
+                        <Text style={{ fontSize: 17, fontWeight: 'bold', color:'#A3E635' }}>Power:</Text>
                         <View style={{ flexGrow: 1, marginLeft: 10 }}>
-                            <ProgressBar progress={getAverage(hero.powerstats) / 100} width={null} />
+                            <ProgressBar progress={getAverage(hero.powerstats) / 100} width={null} color={'#A3E635'}/>
                         </View>
                     </View>
                 </View>
@@ -67,10 +67,12 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 17,
         fontWeight: '600',
+        color:'#A3E635'
     },
     info:{
         fontSize:13,
-        fontWeight:'400'
+        fontWeight:'400',
+        color:'white'
     }
 })
 

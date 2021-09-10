@@ -48,6 +48,11 @@ export function herosReducer(
                 ...state,
                 selecting: payload
             }
+        case ActionTypes.DELETE_TEAM_MEMBER:
+            return {
+                ...state,
+                [memberSpace(state, payload)]: null
+            }
         case ActionTypes.CLEAN_TEAM:
             return {
                 ...state,
@@ -57,4 +62,15 @@ export function herosReducer(
         default:
             return state
     }
+}
+
+function memberSpace(state: defaultStateInterface, hero: Hero): string{
+    let memberSpace: string;
+    state.hero1 === hero ? memberSpace = 'hero1' : null; 
+    state.hero2 === hero ? memberSpace = 'hero2' : null; 
+    state.hero3 === hero ? memberSpace = 'hero3' : null; 
+    state.villain1 === hero ? memberSpace = 'villain1' : null; 
+    state.villain2 === hero ? memberSpace = 'villain2' : null; 
+    state.villain3 === hero ? memberSpace = 'villain3' : null;
+    return memberSpace!; 
 }

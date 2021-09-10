@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, PixelRatio } from 'react-native';
 import { useIsFocused } from '@react-navigation/native'
 import useMyTeamStats from '../hooks/useMyTeamStats';
 import HeroMemberView from '../components/HeroMemberView';
@@ -33,7 +33,7 @@ const MyTeam = () => {
             </View>
             <View style={{width:'80%'}}>
                 <Text style={styles.subtitle}>Team Average</Text>
-                <ProgressBar progress={Number(getTeamAverage())/100} width={null} />
+                <ProgressBar progress={Number(getTeamAverage())/100} width={null} color={'#A3E635'}/>
             </View>
         </View>
     )
@@ -43,13 +43,16 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         fontWeight: 'bold',
-        textAlign: 'center'
+        textAlign: 'center',
+        color:'#A3E635',
+        marginTop:20
     },
     subtitle: {
         textAlign: 'center',
         fontSize: 20,
         fontWeight: '600',
-        marginBottom: 10
+        marginBottom: 10,
+        color:'#A3E635'
     },
     container: {
         width: '100%',
@@ -61,8 +64,8 @@ const styles = StyleSheet.create({
     heroContainer: {
         borderWidth: 2,
         borderRadius: 10,
-        height: 80,
-        width: 80,
+        height: PixelRatio.getPixelSizeForLayoutSize(80),
+        width: PixelRatio.getPixelSizeForLayoutSize(80),
         marginBottom: 20
     }
 })

@@ -21,9 +21,9 @@ const ModalAlphabeticalFilter = ({ isVisible, changeVisible }: Props) => {
             changeVisible(false);
         }
         return (
-            <View style={{marginVertical:20}}>
-                <TouchableOpacity onPress={() => onPressHandler()}>
-                    <Text style={{ color: 'black', fontSize: 30, fontWeight: 'bold', marginHorizontal: 20 }}>{item}</Text>
+            <View style={{ marginVertical: 20 }}>
+                <TouchableOpacity style={styles.button} onPress={() => onPressHandler()}>
+                    <Text style={{ color: 'black', fontSize: 30, fontWeight: 'bold', marginHorizontal: 20 }}>{item.toUpperCase()}</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -37,8 +37,8 @@ const ModalAlphabeticalFilter = ({ isVisible, changeVisible }: Props) => {
         >
             <View style={styles.modalContainer}>
                 <View style={styles.modal}>
-                    <Text style={{textAlign:'center', fontSize:25}}>Alphabetical order</Text>
-                    <Text style={{fontSize:20, textAlign:'center'}}>Select a character</Text>
+                    <Text style={{ textAlign: 'center', fontSize: 25, color: '#A3E635' }}>Alphabetical order</Text>
+                    <Text style={{ fontSize: 20, textAlign: 'center', color: 'white' }}>Select a character</Text>
                     <FlatList
                         data={alphabet}
                         keyExtractor={(item) => item}
@@ -48,6 +48,8 @@ const ModalAlphabeticalFilter = ({ isVisible, changeVisible }: Props) => {
                     <Button
                         title='Cerrar'
                         onPress={() => changeVisible(false)}
+                        color='black'
+
                     />
                 </View>
             </View>
@@ -64,8 +66,14 @@ const styles = StyleSheet.create({
     modal: {
         margin: 50,
         padding: 20,
-        borderRadius:10,
-        backgroundColor: 'white'
+        borderRadius: 10,
+        backgroundColor: '#171717'
+    },
+    button: {
+        padding: 5,
+        backgroundColor: '#A3E635',
+        marginHorizontal: 5,
+        borderRadius: 10
     }
 })
 

@@ -7,7 +7,7 @@ interface defaultStateInterface{
 
 const defaultState: defaultStateInterface = {
     alphabeticalFilter: 'a',
-    alignmentFilter: 'Good'
+    alignmentFilter: 'good'
 }
 
 interface action {
@@ -30,6 +30,13 @@ export function filterReducer(
             return{
                 ...state,
                 alphabeticalFilter: payload
+            }
+        
+        case ActionTypes.CLEAN_FILTERS:
+            return{
+                ...state,
+                alphabeticalFilter:'a',
+                alignmentFilter: 'Good'
             }
     
         default:

@@ -51,14 +51,14 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 40,
-        fontWeight: '600',
+        fontWeight: '700',
         color: 'black'
     },
     subTitle: {
         fontSize: 20,
         fontWeight: '600',
         textAlign: 'center',
-        color: 'white' //TODO: Cambiar el color 
+        color: '#A3E635'
     },
     image: {
         width: '100%',

@@ -3,11 +3,12 @@ import { View, Text, Image, StyleSheet, ToastAndroid, TouchableOpacity, ScrollVi
 import { useDispatch } from 'react-redux';
 import Appearance from '../components/heroDetailsComponents/Appearance';
 import Stats from '../components/heroDetailsComponents/Stats';
-import { addTeamMember } from '../redux/actions/heroActions';
+import { addTeamMember, deleteTeamMember } from '../redux/actions/heroActions';
 import { Hero } from '../interfaces/heroInterface';
 import HeroInformation from '../components/heroDetailsComponents/HeroInformation';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation, } from '@react-navigation/core';
+import useAmIinTheTeam from '../hooks/useAmIinTheTeam';
 
 interface RootParams {
     hero: Hero
@@ -17,30 +18,52 @@ const deviceWidth = Dimensions.get('window').width;
 const deviceHeigth = Dimensions.get('window').height;
 
 const HeroDetails = ({ route }) => {
-    const navigator = useNavigation();
+    const navigator = useNavigation() as any;
     const dispatch = useDispatch();
     const { hero }: RootParams = route.params;
+    const { amIinTheTeam } = useAmIinTheTeam();
 
-    function showToast(){
+    function showToast(message: string) {
         if (Platform.OS === 'android') {
-            ToastAndroid.show("Hero Added!", ToastAndroid.SHORT);
+            ToastAndroid.show(message, ToastAndroid.SHORT);
         }
     };
 
-    function addHeroToTeam(){
+    function addHeroToTeam() {
         dispatch(addTeamMember(hero));
-        showToast();
-        navigator.goBack();
+        showToast('Hero added!');
+        navigator.navigate('My Team');
+    }
+
+    function deleteHeroFromTeam() {
+        dispatch(deleteTeamMember(hero));
+        showToast('Hero deleted');
+        navigator.navigate('My Team');
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor:'#171717' }}>
             <ScrollView>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical:10 }}>
-                    <TouchableOpacity onPress={() => navigator.goBack()}>
-                        <Icon name="arrow-back" size={35} color='black' style={{ marginHorizontal: 10, marginTop: 5 }} />
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginVertical: 10 }}>
+                    {/* Back button  and Hero's name */}
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <TouchableOpacity onPress={() => navigator.goBack()}>
+                            <Icon name="arrow-back" size={35} color='#A3E635' style={{ marginHorizontal: 10, marginTop: 5 }} />
+                        </TouchableOpacity>
+                        <Text style={styles.title}>{hero.name}</Text>
+                    </View>
+                    {/* add to team button */}
+                    <TouchableOpacity style={styles.addHeroButton} activeOpacity={0.7} onPress={amIinTheTeam(hero) ? deleteHeroFromTeam : addHeroToTeam}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', padding: 5 }}>
+                            {
+                                amIinTheTeam(hero) ? (
+                                    <Icon name="trash-outline" size={28} color='#171717' />
+                                ) : (
+                                    <Icon name="add" size={28} color='#171717' />
+                                )
+                            }
+                        </View>
                     </TouchableOpacity>
-                    <Text style={styles.title}>{hero.name}</Text>
                 </View>
 
                 <View style={styles.cardContainer}>
@@ -56,12 +79,6 @@ const HeroDetails = ({ route }) => {
                 <Appearance appearance={hero.appearance} style={styles.appearance} />
 
             </ScrollView>
-            <TouchableOpacity style={styles.addHeroButton} activeOpacity={0.7} onPress={addHeroToTeam}>
-                <View style={{ flexDirection: 'row', alignItems:'center', padding: 10 }}>
-                    <Icon name="add" size={30} color='white' />
-                    <Text style={{fontSize:20, color:'white'}}>Add to team</Text>
-                </View>
-            </TouchableOpacity>
         </View>
     )
 }
@@ -70,7 +87,7 @@ const styles = StyleSheet.create({
     cardContainer: {
         margin: 10,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     image: {
         width: deviceWidth * 0.40,
@@ -80,7 +97,8 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 35,
         fontWeight: '700',
-        marginLeft: 10
+        marginLeft: 10,
+        color:'#A3E635'
     },
     heroInformation: {
         marginHorizontal: 10,
@@ -98,10 +116,8 @@ const styles = StyleSheet.create({
     },
     addHeroButton: {
         borderRadius: 10,
-        backgroundColor: 'black',
-        position: 'absolute',
-        bottom: 20,
-        right: 20
+        backgroundColor: '#A3E635',
+        marginRight: 5
     }
 })
 

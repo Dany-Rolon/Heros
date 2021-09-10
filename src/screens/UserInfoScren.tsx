@@ -5,6 +5,7 @@ import { RootState } from '../redux/store';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { setIsLogin, setUser } from '../redux/actions/userActions';
 import { cleanTeam } from '../redux/actions/heroActions';
+import { cleanFilters } from '../redux/actions/filtersActions';
 
 const UserInfoScren = () => {
     const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const UserInfoScren = () => {
 
     function logOut(){
         dispatch(cleanTeam());
+        dispatch(cleanFilters());
         dispatch(setUser(null));
         dispatch(setIsLogin(false));
     }
@@ -37,13 +39,13 @@ const UserInfoScren = () => {
             <View style={styles.infoContainer}>
                 <View>
                     <Text style={styles.subtitle}>Email:</Text>
-                    <Text>{userEmail}</Text>
+                    <Text style={{color:'white'}}>{userEmail}</Text>
                 </View>
                 <TouchableOpacity activeOpacity={0.5} onPress={() => showAlert()}> 
                     <Icon
                         name="log-out-outline"
                         size={30}
-                        color='black'
+                        color='#A3E635'
                     />
                 </TouchableOpacity>
             </View>
@@ -54,10 +56,15 @@ const UserInfoScren = () => {
 const styles = StyleSheet.create({
     title: {
         fontSize: 30,
-        fontWeight: '600'
+        fontWeight: '600',
+        color:'#A3E635',
+        textAlign:'center',
+        marginBottom:30,
+        marginTop:30
     },
     subtitle: {
-        fontSize: 20
+        fontSize: 20,
+        color:'#A3E635'
     },
     infoContainer: {
         margin: 10,

@@ -22,6 +22,13 @@ export function setSelectingHero(payload: string){
     }
 }
 
+export function deleteTeamMember(hero: Hero){
+    return{
+        type:ActionTypes.DELETE_TEAM_MEMBER,
+        payload: hero
+    }
+}
+
 export function cleanTeam(){
     return{
         type:ActionTypes.CLEAN_TEAM

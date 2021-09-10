@@ -5,6 +5,7 @@ import { Formik, Field } from 'formik'
 import CustomInput from './CustomInput'
 import { useDispatch } from 'react-redux';
 import { setIsLogin, setUser } from '../redux/actions/userActions';
+import {useNetInfo} from "@react-native-community/netinfo";
 
 interface Props {
     register?: boolean,
@@ -12,10 +13,14 @@ interface Props {
 }
 
 const LoginForm = ({ register, isLoading }: Props) => {
-
+    const netInfo = useNetInfo();
     const dispatch = useDispatch();
 
     function onSubmitHandler(values: any) {
+        if(!netInfo.isConnected){
+            ToastAndroid.show('Make sure you have network connection', ToastAndroid.CENTER);
+            return
+        }
         isLoading(true);
         setTimeout(() => {
             if (values.email === 'dany@mail.com' && values.password === '123456aB@') {
@@ -101,7 +106,7 @@ const styles = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'orange',
+        backgroundColor: '#A3E635',
         borderRadius: 10,
         paddingVertical: 10,
         marginTop: 20

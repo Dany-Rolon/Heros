@@ -13,3 +13,9 @@ export function setFilterByAlphabet(character: string){
         payload: character
     }
 }
+
+export function cleanFilters(){
+    return{
+        type:ActionTypes.CLEAN_FILTERS,
+    }
+}

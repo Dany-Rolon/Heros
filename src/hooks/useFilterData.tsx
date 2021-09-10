@@ -9,12 +9,13 @@ export default function useFilterData(){
     const [filteredData, setFilteredData] = useState<Hero[]>(heros);
 
     useEffect(() => {
+        setFilteredData(heros);
         filter();
     }, [])
 
     useEffect(() => {
         filter()
-    },[alignmentFilter, alphabeticalFilter])
+    },[alignmentFilter, alphabeticalFilter, heros])
 
     function filter(){
         const alignmentResult = heros.filter(item => item.biography.alignment.toString() === alignmentFilter)
@@ -24,7 +25,7 @@ export default function useFilterData(){
     }
 
     return{
-        filteredData, heros
+        filteredData
     }
 }
 

@@ -15,17 +15,26 @@ const ListScreen = () => {
     const { isLoading } = useHeros();
     const [input, setInput] = useState<string>('');
     const [showingModalAphabetical, setShowingModalAphabetical] = useState<boolean>(false);
-    const { data: searchData } = useSearchHeros({ input: input, time: 500 });
+    const { data: searchData } = useSearchHeros({ input: input, time: 800 });
     const { filteredData } = useFilterData();
     const selectedHeroSpace = useSelector((state: RootState) => state.heros.selecting);
-    
+    const characterSelected = useSelector((state:RootState) => state.filter.alphabeticalFilter)
+
     if (isLoading) {
         <Loading />
     }
 
+    function EmptyList() {
+        return (
+            <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 30 }}>
+                <Text style={{ fontSize: 30 }}>No heroes to show</Text>
+            </View>
+        )
+    }
+
     return (
         <View style={{ flex: 1 }}>
-            <ModalAlphabeticalFilter isVisible={showingModalAphabetical} changeVisible={setShowingModalAphabetical}/>
+            <ModalAlphabeticalFilter isVisible={showingModalAphabetical} changeVisible={setShowingModalAphabetical} />
             <View style={styles.searchContainer}>
                 <View style={styles.searchBar}>
                     <Icon name='search' size={25} color="white" style={{ marginLeft: 15 }} />
@@ -43,22 +52,24 @@ const ListScreen = () => {
                     </TouchableOpacity>
 
                     {/* Alphabetical filter buttom */}
-                    <TouchableOpacity 
-                        activeOpacity={0.7} 
-                        style={{ paddingHorizontal: 10 }} 
+                    <TouchableOpacity
+                        activeOpacity={0.7}
+                        style={{ paddingHorizontal: 10 }}
                         onPress={() => setShowingModalAphabetical(!showingModalAphabetical)}
                     >
                         <Icon name="text-outline" size={25} color="white" />
                     </TouchableOpacity>
                 </View>
-                <View style={{marginBottom:5, marginLeft:10}}>
+                <View style={{ flexDirection:'row', justifyContent:'space-between', marginBottom: 5, marginHorizontal: 20 }}>
                     <Text style={{ color: 'white' }}>Selecting hero for space: {selectedHeroSpace}</Text>
+                    <Text style={{color:'white', textAlignVertical:'top'}}>{characterSelected.toUpperCase()}</Text>
                 </View>
             </View>
             <FlatList
                 data={input !== '' ? searchData : filteredData}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => <HeroCard hero={item} />}
+                ListEmptyComponent={ <EmptyList/>}
             />
         </View>
     )
@@ -66,13 +77,13 @@ const ListScreen = () => {
 
 const styles = StyleSheet.create({
     searchContainer: {
-        backgroundColor: 'black',
+        backgroundColor: '#18181B',
         justifyContent: 'flex-start'
     },
     searchBar: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: 'black'
+        backgroundColor: '#171717'
     }
 })
 

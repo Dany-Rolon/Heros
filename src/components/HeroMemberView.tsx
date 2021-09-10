@@ -31,6 +31,14 @@ const HeroMemberView = ({ hero, teamMemberId, memberType }: Props) => {
         }
     }
 
+    function NoImage(){
+        return(
+            <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+                <Text style={{color:'#A3E635'}}>{`${memberType.toUpperCase()}${teamMemberId}`}</Text>
+            </View>
+        )
+    }
+
     useEffect(() => {}, [isFocus]) // React navigator al parecer tiene problemas con re-renderear el componente cuando hay un cambio en el estado producido en otra screen, con esto fuerzo el re-render para que el cambio sea visible
 
     return (
@@ -41,7 +49,7 @@ const HeroMemberView = ({ hero, teamMemberId, memberType }: Props) => {
             onLongPress={() => onLongPressHandler()}
         >
             <View style={styles.heroContainer}>
-                {hero ? (<Image source={{ uri: hero.images.md }} style={styles.image} />) : null}
+                {hero ? (<Image source={{ uri: hero.images.md }} style={styles.image} />) : <NoImage/>}
             </View>
             <Text style={styles.title}>{hero ? firstName![0] : 'Select a hero'}</Text>
         </TouchableOpacity>
@@ -67,7 +75,8 @@ const styles = StyleSheet.create({
     },
     title:{
         textAlign:'center',
-        marginBottom: 20
+        marginBottom: 20,
+        color:'white'
     }
 })
 
