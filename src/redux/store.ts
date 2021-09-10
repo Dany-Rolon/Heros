@@ -11,7 +11,8 @@ export interface RootState {
         hero3: Hero | null,
         villain1: Hero | null,
         villain2: Hero | null,
-        villain3: Hero | null
+        villain3: Hero | null,
+        selecting: string,
     }
     user: {
         email: string,
@@ -36,5 +37,3 @@ const persistor = persistStore(store);
 export {
     store, persistor
 }
-
-

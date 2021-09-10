@@ -1,6 +1,6 @@
 import { ActionTypes } from '../contants';
 
-export function setUser(user: string){
+export function setUser(user: string | null){
     return {
         type: ActionTypes.SET_USER,
         payload: user

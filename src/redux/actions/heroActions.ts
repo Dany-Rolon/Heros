@@ -16,9 +16,14 @@ export function addTeamMember(hero: Hero) {
 }
 
 export function setSelectingHero(payload: string){
-    console.log(`Cambiando el estado de selecting a: ${payload}`)
     return{
         type:ActionTypes.SET_SELECTING_HERO,
         payload
+    }
+}
+
+export function cleanTeam(){
+    return{
+        type:ActionTypes.CLEAN_TEAM
     }
 }

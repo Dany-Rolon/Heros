@@ -4,7 +4,7 @@ import { singUpValidationSchema } from '../forms/singUpValidationSchema'
 import { Formik, Field } from 'formik'
 import CustomInput from './CustomInput'
 import { useDispatch } from 'react-redux';
-import { setIsLogin } from '../redux/actions/userActions';
+import { setIsLogin, setUser } from '../redux/actions/userActions';
 
 interface Props {
     register?: boolean,
@@ -20,6 +20,7 @@ const LoginForm = ({ register, isLoading }: Props) => {
         setTimeout(() => {
             if (values.email === 'dany@mail.com' && values.password === '123456aB@') {
                 dispatch(setIsLogin(true));
+                dispatch(setUser(values.email));
                 isLoading(false);
             } else {
                 isLoading(false)
@@ -114,19 +115,5 @@ const styles = StyleSheet.create({
         marginTop: 20
     }
 })
-
-
-/* User email */
-//  <Text style={styles.title}>Email</Text>
-
-
-/* User password */
-//  <Text style={styles.title}>Password</Text>
-
-
-/* User password repeated*/
-//  <Text style={styles.title}>Repeat password</Text>
-
-
 
 export default LoginForm

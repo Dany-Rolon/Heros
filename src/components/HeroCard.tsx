@@ -14,7 +14,10 @@ const HeroCard = ({ hero }: Props) => {
     const { getAverage } = useStats();
 
     return (
-        <TouchableOpacity activeOpacity={0.7} onPress={() => navigator.navigate('Details', { hero })}>
+        <TouchableOpacity 
+            activeOpacity={0.7} 
+            onPress={() => navigator.navigate('Details', { hero })}
+        >
             <View style={styles.card}>
                 <Image
                     source={{ uri: hero.images.sm }}

@@ -25,6 +25,12 @@ export function filterReducer(
                 ...state,
                 alignmentFilter: payload
             }
+
+        case ActionTypes.SET_FILTER_BY_APHABET:
+            return{
+                ...state,
+                alphabeticalFilter: payload
+            }
     
         default:
             return state

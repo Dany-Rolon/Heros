@@ -25,10 +25,21 @@ const HeroMemberView = ({ hero, teamMemberId, memberType }: Props) => {
         navigator.navigate('Hero list');
     }
 
+    function onLongPressHandler(){
+        if(hero){
+            navigator.navigate('Details', {hero})
+        }
+    }
+
     useEffect(() => {}, [isFocus]) // React navigator al parecer tiene problemas con re-renderear el componente cuando hay un cambio en el estado producido en otra screen, con esto fuerzo el re-render para que el cambio sea visible
 
     return (
-        <TouchableOpacity style={styles.memberContainer} activeOpacity={0.7} onPress={() => onPressHandler()}>
+        <TouchableOpacity 
+            style={styles.memberContainer} 
+            activeOpacity={0.7} 
+            onPress={() => onPressHandler()}
+            onLongPress={() => onLongPressHandler()}
+        >
             <View style={styles.heroContainer}>
                 {hero ? (<Image source={{ uri: hero.images.md }} style={styles.image} />) : null}
             </View>

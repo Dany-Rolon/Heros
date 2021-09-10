@@ -48,6 +48,12 @@ export function herosReducer(
                 ...state,
                 selecting: payload
             }
+        case ActionTypes.CLEAN_TEAM:
+            return {
+                ...state,
+                hero1: null, hero2: null, hero3: null,
+                villain1: null, villain2: null, villain3: null, selecting:'hero1'
+            }
         default:
             return state
     }

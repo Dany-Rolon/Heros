@@ -6,3 +6,10 @@ export function setAlignmentFilter(alignment: string){
         payload: alignment
     }
 }
+
+export function setFilterByAlphabet(character: string){
+    return {
+        type: ActionTypes.SET_FILTER_BY_APHABET,
+        payload: character
+    }
+}
